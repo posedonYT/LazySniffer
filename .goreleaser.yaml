@@ -1,0 +1,34 @@
+version: 2
+project_name: lazysniffer
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - id: lazysniffer
+    main: ./cmd/lazysniffer
+    binary: lazysniffer
+    env:
+      - CGO_ENABLED=1   # libpcap
+    goos: [darwin, linux]
+    goarch: [amd64, arm64]
+    flags: [-trimpath]
+    ldflags:
+      - -s -w -X github.com/poseydon/lazysniffer/internal/version.Version={{.Version}}
+archives:
+  - formats: [tar.gz]
+    files: [README.md, LICENSE]
+checksum:
+  name_template: checksums.txt
+brews:
+  - name: lazysniffer
+    homepage: https://github.com/poseydon/lazysniffer
+    description: Terminal network protocol analyzer in the style of lazygit
+    license: MIT
+    dependencies:
+      - name: libpcap
+        type: optional
+    repository:
+      owner: poseydon
+      name: homebrew-tap
+    test: |
+      assert_match "lazysniffer", shell_output("#{bin}/lazysniffer version")

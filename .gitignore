@@ -1,0 +1,55 @@
+# Build output
+/bin/
+/dist/
+/lazysniffer
+/lazysniffer-dumpcap
+*.exe
+*.test
+*.out
+*.prof
+*.pprof
+coverage.*
+cover.out
+
+# Go workspace / vendoring
+go.work
+go.work.sum
+/vendor/
+
+# Captures, key logs and exports (may contain private traffic and secrets)
+*.pcap
+*.pcapng
+*.pcap.gz
+*.pcapng.gz
+*.cap
+*.pklg
+*.btsnoop
+*.keys
+*.keylog
+sslkeys*.log
+keys.log
+*.wav
+*.lazysniffer-tmp
+
+# Local config and profiles
+/config.yml
+/profiles/
+
+# Logs and scratch files
+*.log
+/tmp/
+/scratch/
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Claude Code local state
+.claude/
